@@ -242,12 +242,152 @@
 /* ─── Scroll Reveal ─── */
 .reveal {
   opacity: 0;
-  transform: translateY(-30px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(50px);
+  transition: opacity 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .reveal.revealed {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ─── Staggered Child Reveal ─── */
+.scroll-reveal-child {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.scroll-reveal-child.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+
+  .reveal,
+  .scroll-reveal-child {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ─── Contact Section Animations ─── */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.6;
+  }
+
+  50% {
+    transform: translateY(-20px) scale(1.1);
+    opacity: 1;
+  }
+}
+
+@keyframes pulseGlow {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.15;
+  }
+
+  50% {
+    transform: scale(1.15);
+    opacity: 0.3;
+  }
+}
+
+@keyframes spinSlow {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.contact-card-wrapper {
+  position: relative;
+  z-index: 10;
+}
+
+.contact-frame {
+  position: absolute;
+  inset: 0;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(249, 115, 22, 0.4);
+  pointer-events: none;
+  z-index: -1;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.frame-tilt-1 {
+  transform: rotate(-3deg);
+  background: rgba(249, 115, 22, 0.06);
+  border-color: rgba(249, 115, 22, 0.6);
+}
+
+.frame-tilt-2 {
+  transform: rotate(2deg);
+  border-color: rgba(245, 158, 11, 0.5);
+}
+
+.frame-tilt-3 {
+  transform: rotate(-5deg);
+  border-color: rgba(249, 115, 22, 0.4);
+}
+
+.contact-particle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(249, 115, 22, 0.8);
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.8);
+  pointer-events: none;
+  animation: float 4s ease-in-out infinite;
+}
+
+.contact-particle:nth-child(1) {
+  top: 15%;
+  left: 10%;
+  animation-delay: 0s;
+  animation-duration: 5s;
+}
+
+.contact-particle:nth-child(2) {
+  top: 70%;
+  right: 8%;
+  animation-delay: 1.2s;
+  animation-duration: 4s;
+}
+
+.contact-particle:nth-child(3) {
+  bottom: 20%;
+  left: 30%;
+  animation-delay: 2.5s;
+  animation-duration: 6s;
+}
+
+.contact-particle:nth-child(4) {
+  top: 30%;
+  right: 25%;
+  animation-delay: 0.8s;
+  animation-duration: 4.5s;
+}
+
+.contact-particle:nth-child(5) {
+  bottom: 40%;
+  left: 60%;
+  animation-delay: 1.8s;
+  animation-duration: 5.5s;
 }

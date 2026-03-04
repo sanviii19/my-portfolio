@@ -1,20 +1,45 @@
 import { useEffect } from 'react';
-import { Github, Linkedin, Mail, ExternalLink, Home, Folder, Code2, Wrench } from 'lucide-react';
+import { Github, Linkedin, Mail, ExternalLink, Home, Folder, Code2, Wrench, Award } from 'lucide-react';
 import profileImg from './assets/profileImg.jpeg';
+import linklyImg from './assets/projectImg/linkly.png';
+import rapidstoreImg from './assets/projectImg/RapidStore.png';
+import konvoImg from './assets/projectImg/konvo.png';
+import clinicCareImg from './assets/projectImg/ClinicCare.png';
+import disasterMgmtImg from './assets/projectImg/disaster-manangement.png';
+import timeFliesImg from './assets/projectImg/timeFlies.png';
+
 import './App.css';
 
 function App() {
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
+    // Respect reduced-motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('revealed'));
+      document.querySelectorAll('.scroll-reveal-child').forEach(el => el.classList.add('revealed'));
+      return;
+    }
+
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+
+          // Stagger children animations
+          const children = entry.target.querySelectorAll('.scroll-reveal-child');
+          children.forEach((child, index) => {
+            setTimeout(() => {
+              child.classList.add('revealed');
+            }, index * 180);
+          });
+        }
+      });
+    }, observerOptions);
 
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     return () => observer.disconnect();
@@ -41,7 +66,12 @@ function App() {
           <span className="nav-dot" />
           <a href="#tools" className="nav-icon-btn">
             <Wrench />
-            <span className="nav-tooltip">Tools</span>
+            <span className="nav-tooltip">Skills</span>
+          </a>
+          <span className="nav-dot" />
+          <a href="#certifications" className="nav-icon-btn">
+            <Award />
+            <span className="nav-tooltip">Certifications</span>
           </a>
           <span className="nav-dot" />
           <a href="#contact" className="nav-icon-btn">
@@ -52,7 +82,7 @@ function App() {
       </div>
 
       {/* ── Content Wrapper (sidebar + main) ── */}
-      <div className="flex max-w-7xl mx-auto pt-10 ml-20">
+      <div className="flex max-w-7xl mx-auto pt-6 ml-20">
         {/* Profile Card — sticky sidebar */}
         <aside className="profile-sidebar">
           <div className="bg-white rounded-3xl p-6 text-black w-full max-w-[20rem] relative overflow-hidden shadow-2xl">
@@ -64,9 +94,10 @@ function App() {
 
             <div className="relative z-10">
               {/* Photo with decorative ring */}
-              <div className="relative mb-5">
-                <div className="absolute -top-4 -left-4 w-[calc(100%+2rem)] h-[calc(100%+2rem)] border-[2.5px] border-dashed border-orange-400/50 rounded-[1.75rem] rotate-[8deg]"></div>
-                <div className="p-2 bg-gradient-to-br from-orange-200 to-orange-100 rounded-[1.25rem]">
+              <div className="relative mb-5 z-10">
+                <div className="absolute -top-4 -left-4 w-[calc(100%+2rem)] h-[calc(100%+2rem)] border-[2.5px] border-solid border-orange-300/50 rounded-[1.75rem] rotate-[8deg]"></div>
+                <div className="absolute -top-3 -left-3 w-[calc(100%+1.5rem)] h-[calc(100%+1.5rem)] border-[2px] border-dashed border-orange-200/50 rounded-[1.5rem] rotate-[-8deg]"></div>
+                <div className="p-2 bg-gradient-to-br from-orange-200 to-orange-100 rounded-[1.25rem] relative z-10">
                   <img
                     src={profileImg}
                     alt="Profile"
@@ -77,7 +108,7 @@ function App() {
 
               {/* Name + availability badge */}
               <div className="flex items-center justify-center gap-2 mb-4">
-                <h2 className="text-[1.75rem] font-extrabold tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>Sanvi Kumari</h2>
+                <h2 className="text-[1.75rem] text-gray-700 font-extrabold tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>Sanvi Kumari</h2>
               </div>
               <p className="text-center text-gray-600 font-medium mb-6 text-sm leading-relaxed px-1">
                 Full-Stack Developer | DSA<br />
@@ -110,8 +141,8 @@ function App() {
               <span className="text-gray-700">DEVELOPER</span>
             </h1>
             <p className="text-gray-400 text-base lg:text-lg mb-12 max-w-xl leading-relaxed">
-              Passionate about creating intuitive and engaging user experiences.
-              Specialize in transforming ideas into beautifully crafted products.
+              Architecting scalable, user-centric web applications.
+              Dedicated to transforming complex challenges into elegant, high-performance software.
             </p>
 
             {/* Stats */}
@@ -138,34 +169,36 @@ function App() {
 
             {/* Resume Card */}
             <a
-              href="https://drive.google.com/file/d/1BCxUTnNzga9-9mNhS06Z0vzn7uVWWRuo/view?usp=sharing"
+              href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="group block max-w-xl"
+              className="group block max-w-xl relative"
             >
-              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-orange-500 via-orange-400 to-amber-400 p-[1px] hover:scale-[1.02] transition-transform duration-300">
-                <div className="relative overflow-hidden rounded-[calc(1rem-1px)] bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 px-8 py-7">
-                  {/* Shimmer effect */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%]" style={{ transition: 'transform 0.8s ease, opacity 0.3s ease' }}></div>
+              {/* Static glow orbs */}
+              <div className="absolute -top-10 -right-10 w-48 h-48 bg-orange-500 rounded-full blur-[100px] pointer-events-none group-hover:bg-orange-400 transition-colors duration-500 opacity-60"></div>
+              <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-amber-400 rounded-full blur-[80px] pointer-events-none group-hover:bg-amber-300 transition-colors duration-500 opacity-60"></div>
 
-                  {/* Decorative waves */}
-                  <div className="absolute inset-0 opacity-[0.06]">
-                    <svg className="w-full h-full" viewBox="0 0 400 120" preserveAspectRatio="none">
-                      <path d="M 0 60 Q 100 20 200 60 T 400 60" stroke="currentColor" fill="none" strokeWidth="1.5" className="text-orange-400" />
-                      <path d="M 0 80 Q 100 40 200 80 T 400 80" stroke="currentColor" fill="none" strokeWidth="1.5" className="text-orange-400" />
-                      <path d="M 0 100 Q 100 60 200 100 T 400 100" stroke="currentColor" fill="none" strokeWidth="1.5" className="text-orange-400" />
-                    </svg>
-                  </div>
+              <div className="contact-card-wrapper w-full">
+                {/* Decorative Tilted Frames (Borders) */}
+                <div className="contact-frame frame-tilt-1 group-hover:-translate-x-1 group-hover:-translate-y-0.5 group-hover:rotate-[-4deg] !transition-all !duration-[1200ms] ease-out"></div>
+                <div className="contact-frame frame-tilt-2 group-hover:translate-x-1 group-hover:-translate-y-0.5 group-hover:rotate-[3deg] !transition-all !duration-[1200ms] ease-out"></div>
+                <div className="contact-frame frame-tilt-3 group-hover:translate-y-1 group-hover:rotate-[-6deg] !transition-all !duration-[1200ms] ease-out"></div>
 
-                  <div className="relative flex items-center justify-between gap-6">
-                    <div>
-                      <p className="text-orange-400 text-xs font-semibold uppercase tracking-widest mb-2">View My Resume</p>
-                      <h3 className="text-2xl font-bold text-white mb-1">Explore My Journey</h3>
-                      <p className="text-gray-400 text-sm">Skills, experience & achievements — all in one place</p>
-                    </div>
-                    <div className="w-12 h-12 rounded-full bg-orange-500/20 flex items-center justify-center shrink-0 group-hover:bg-orange-500/30 transition-colors">
-                      <ExternalLink className="w-5 h-5 text-orange-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                    </div>
+                <div className="relative bg-gray-950/95 backdrop-blur-2xl rounded-3xl p-6 lg:p-8 overflow-hidden shadow-2xl border border-white/5 group-hover:border-orange-500/20 transition-colors duration-500">
+                  {/* Decorative subtle rings */}
+                  <div className="absolute -top-10 -right-10 w-32 h-32 border-2 border-orange-500/20 rounded-full pointer-events-none group-hover:border-orange-500/40 group-hover:scale-110 transition-all duration-700 ease-out"></div>
+                  <div className="absolute -top-5 -right-5 w-20 h-20 border-2 border-dashed border-orange-500/30 rounded-full pointer-events-none group-hover:border-orange-500/50 group-hover:rotate-[15deg] transition-all duration-700 ease-out"></div>
+
+                  {/* Corner accent */}
+                  <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-orange-500/10 to-transparent rounded-tr-full pointer-events-none group-hover:from-orange-500/20 transition-colors duration-500"></div>
+
+                  <div className="relative z-10">
+                    <p className="flex items-center gap-1.5 text-orange-400 text-xs font-semibold uppercase tracking-widest mb-2 group-hover:text-orange-300 transition-colors">
+                      View My Resume
+                      <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </p>
+                    <h3 className="text-2xl lg:text-3xl font-bold text-white mb-2 group-hover:text-amber-100 transition-colors tracking-tight">Explore My Journey</h3>
+                    <p className="text-gray-400 text-sm">Skills, experience & achievements — all in one place</p>
                   </div>
                 </div>
               </div>
@@ -179,38 +212,74 @@ function App() {
               <span className="text-gray-700">PROJECTS</span>
             </h2>
             <div className="space-y-5 max-w-2xl">
-              <a href="#" className="group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+              <a href="https://github.com/sanviii19/Linkly" target="_blank" className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
                 <div className="flex items-start gap-5">
                   <div className="w-28 h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
-                    <img src="https://via.placeholder.com/120x80" alt="WanderLust" className="w-full h-full object-cover" />
+                    <img src={linklyImg} alt="Linkly" className="w-full h-full object-cover" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-lg font-bold mb-1">WanderLust</h3>
-                    <p className="text-gray-400 text-sm leading-relaxed">web platform that offers seamless accommodation services.</p>
+                    <h3 className="text-lg font-bold mb-1">Linkly</h3>
+                    <p className="text-gray-400 text-sm leading-relaxed">A web platform that transforms long URLs into secure, customizable short links with built-in analytics.</p>
                   </div>
                   <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 transition-colors shrink-0 mt-1" />
                 </div>
               </a>
-              <a href="#" className="group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+              <a href="https://github.com/sanviii19/RapidStore" target="_blank" className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
                 <div className="flex items-start gap-5">
                   <div className="w-28 h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
-                    <img src="https://via.placeholder.com/120x80" alt="Ultimate Success Institute" className="w-full h-full object-cover" />
+                    <img src={rapidstoreImg} alt="RapidS  tore" className="w-full h-full object-cover" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-lg font-bold mb-1">Ultimate Success Institute</h3>
-                    <p className="text-gray-400 text-sm leading-relaxed">Platform that offers students premium study hub access, enables admins to manage them.</p>
+                    <h3 className="text-lg font-bold mb-1">RapidStore</h3>
+                    <p className="text-gray-400 text-sm leading-relaxed">An e-commerce platform for seamless online shopping with secure real-time payments and an admin dashboard.</p>
                   </div>
                   <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 transition-colors shrink-0 mt-1" />
                 </div>
               </a>
-              <a href="#" className="group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+              <a href="https://github.com/sanviii19/DiscussionPlatform-Konvo" target="_blank" className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
                 <div className="flex items-start gap-5">
                   <div className="w-28 h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
-                    <img src="https://via.placeholder.com/120x80" alt="Lawease" className="w-full h-full object-cover" />
+                    <img src={konvoImg} alt="Konvo" className="w-full h-full object-cover" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-lg font-bold mb-1">Lawease</h3>
-                    <p className="text-gray-400 text-sm leading-relaxed">Designing an AI-powered legal assistant to answer law-related queries across multiple languages</p>
+                    <h3 className="text-lg font-bold mb-1">Konvo</h3>
+                    <p className="text-gray-400 text-sm leading-relaxed">An online discussion platform designed for seamless group conversations, knowledge sharing, and community building.</p>
+                  </div>
+                  <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 transition-colors shrink-0 mt-1" />
+                </div>
+              </a>
+              <a href="https://github.com/sanviii19/ClinicCare" target="_blank" className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+                <div className="flex items-start gap-5">
+                  <div className="w-28 h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
+                    <img src={clinicCareImg} alt="ClinicCare" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg font-bold mb-1">ClinicCare</h3>
+                    <p className="text-gray-400 text-sm leading-relaxed">A healthcare management platform for booking appointments, managing patient records, and streamlining clinic operations.</p>
+                  </div>
+                  <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 transition-colors shrink-0 mt-1" />
+                </div>
+              </a>
+              <a href="https://github.com/sanviii19/Disaster-managment-hackathon-" target="_blank" className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+                <div className="flex items-start gap-5">
+                  <div className="w-28 h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
+                    <img src={disasterMgmtImg} alt="Disaster Management" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg font-bold mb-1">Disaster Management System</h3>
+                    <p className="text-gray-400 text-sm leading-relaxed">A real-time disaster response platform for tracking, reporting, and coordinating relief efforts during emergencies.</p>
+                  </div>
+                  <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 transition-colors shrink-0 mt-1" />
+                </div>
+              </a>
+              <a href="https://time-flies-gray.vercel.app/" target="_blank" className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+                <div className="flex items-start gap-5">
+                  <div className="w-28 h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
+                    <img src={timeFliesImg} alt="TimeFlies" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg font-bold mb-1">Time Flies</h3>
+                    <p className="text-gray-400 text-sm leading-relaxed">A sleek stopwatch app with basic controls, featuring a dark and light theme toggle for a comfortable experience.</p>
                   </div>
                   <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 transition-colors shrink-0 mt-1" />
                 </div>
@@ -225,29 +294,20 @@ function App() {
               <span className="text-gray-700">PROFILES</span>
             </h2>
             <div className="space-y-5 max-w-2xl">
-              <a href="#" className="group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+              <a href="https://leetcode.com/u/sanviii19/" target="_blank" className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="text-lg font-bold mb-1">LeetCode</h3>
-                    <p className="text-gray-400 text-sm">Solved 300+ Data Structure and Algorithms problems on Leetcode.</p>
+                    <p className="text-gray-400 text-sm">Solved 250+ Data Structure and Algorithms problems on Leetcode.</p>
                   </div>
                   <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 transition-colors shrink-0 ml-4" />
                 </div>
               </a>
-              <a href="#" className="group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+              <a href="https://www.hackerrank.com/profile/sanvikumari19" target="_blank" className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-lg font-bold mb-1">Geeks for Geeks</h3>
-                    <p className="text-gray-400 text-sm">Solved over 100+ quality ques on Geeks for Geeks</p>
-                  </div>
-                  <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 transition-colors shrink-0 ml-4" />
-                </div>
-              </a>
-              <a href="#" className="group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="text-lg font-bold mb-1">TUF Sheet</h3>
-                    <p className="text-gray-400 text-sm">Successfully completed the Striver Sheet (TUF).</p>
+                    <h3 className="text-lg font-bold mb-1">HackerRank</h3>
+                    <p className="text-gray-400 text-sm">Achieved 5-star Gold Badge in C++ and Python on HackerRank.</p>
                   </div>
                   <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 transition-colors shrink-0 ml-4" />
                 </div>
@@ -255,105 +315,151 @@ function App() {
             </div>
           </section>
 
-          {/* Premium Tools */}
+          {/* Technical Skills */}
           <section id="tools" className="reveal py-20 px-6 lg:px-12">
             <h2 className="text-5xl lg:text-6xl font-bold mb-12">
-              PREMIUM<br />
-              <span className="text-gray-700">TOOLS</span>
+              TECHNICAL<br />
+              <span className="text-gray-700">SKILLS</span>
             </h2>
             <div className="grid grid-cols-2 gap-4 max-w-2xl">
-              <div className="flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
-                <div className="w-11 h-11 bg-blue-500/15 rounded-xl flex items-center justify-center text-xl shrink-0">⚛️</div>
+              <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
+                <div className="w-11 h-11 bg-blue-600/15 rounded-xl flex items-center justify-center shrink-0">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" className="w-7 h-7" />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold">C++</h3>
+                  <p className="text-gray-500 text-xs">Programming Language</p>
+                </div>
+              </div>
+              <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
+                <div className="w-11 h-11 bg-yellow-500/15 rounded-xl flex items-center justify-center shrink-0">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" className="w-7 h-7" />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold">JavaScript</h3>
+                  <p className="text-gray-500 text-xs">Web Development</p>
+                </div>
+              </div>
+              <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
+                <div className="w-11 h-11 bg-green-600/15 rounded-xl flex items-center justify-center shrink-0">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" className="w-7 h-7" />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold">Node.js</h3>
+                  <p className="text-gray-500 text-xs">Backend Runtime</p>
+                </div>
+              </div>
+              <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
+                <div className="w-11 h-11 bg-gray-700/40 rounded-xl flex items-center justify-center shrink-0">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express.js" className="w-7 h-7 invert" />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold">Express.js</h3>
+                  <p className="text-gray-500 text-xs">Backend Framework</p>
+                </div>
+              </div>
+              <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
+                <div className="w-11 h-11 bg-blue-500/15 rounded-xl flex items-center justify-center shrink-0">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" className="w-7 h-7" />
+                </div>
                 <div>
                   <h3 className="text-base font-bold">React</h3>
-                  <p className="text-gray-500 text-xs">React.js</p>
+                  <p className="text-gray-500 text-xs">Frontend Library</p>
                 </div>
               </div>
-              <div className="flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
-                <div className="w-11 h-11 bg-green-600/15 rounded-xl flex items-center justify-center text-xl shrink-0">📗</div>
+              <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
+                <div className="w-11 h-11 bg-cyan-500/15 rounded-xl flex items-center justify-center shrink-0">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" className="w-7 h-7" />
+                </div>
                 <div>
-                  <h3 className="text-base font-bold">Node js</h3>
-                  <p className="text-gray-500 text-xs">Backend</p>
+                  <h3 className="text-base font-bold">Tailwind CSS</h3>
+                  <p className="text-gray-500 text-xs">CSS Framework</p>
                 </div>
               </div>
-              <div className="flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
-                <div className="w-11 h-11 bg-green-500/15 rounded-xl flex items-center justify-center text-xl shrink-0">🍃</div>
+              <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
+                <div className="w-11 h-11 bg-green-500/15 rounded-xl flex items-center justify-center shrink-0">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" className="w-7 h-7" />
+                </div>
                 <div>
-                  <h3 className="text-base font-bold">MongoDb</h3>
+                  <h3 className="text-base font-bold">MongoDB</h3>
                   <p className="text-gray-500 text-xs">Database</p>
                 </div>
               </div>
-              <div className="flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
-                <div className="w-11 h-11 bg-gray-700/40 rounded-xl flex items-center justify-center text-xl shrink-0">▲</div>
-                <div>
-                  <h3 className="text-base font-bold">Nextjs</h3>
-                  <p className="text-gray-500 text-xs">React framework</p>
+              <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
+                <div className="w-11 h-11 bg-orange-500/15 rounded-xl flex items-center justify-center shrink-0">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" className="w-7 h-7" />
                 </div>
-              </div>
-              <div className="flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
-                <div className="w-11 h-11 bg-gray-700/40 rounded-xl flex items-center justify-center text-xl shrink-0">🎨</div>
                 <div>
-                  <h3 className="text-base font-bold">Framer</h3>
-                  <p className="text-gray-500 text-xs">Website Builder</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
-                <div className="w-11 h-11 bg-purple-500/15 rounded-xl flex items-center justify-center text-xl shrink-0">🎨</div>
-                <div>
-                  <h3 className="text-base font-bold">Figma</h3>
-                  <p className="text-gray-500 text-xs">Design Tool</p>
+                  <h3 className="text-base font-bold">Git</h3>
+                  <p className="text-gray-500 text-xs">Version Control</p>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* Strategic Approach */}
-          <section className="reveal py-20 px-6 lg:px-12">
+          {/* Licenses & Certifications */}
+          <section id="certifications" className="reveal py-20 px-6 lg:px-12">
             <h2 className="text-5xl lg:text-6xl font-bold mb-12">
-              MY STRATEGIC<br />
-              <span className="text-gray-700">APPROACH</span>
+              LICENSES &<br />
+              <span className="text-gray-700">CERTIFICATIONS</span>
             </h2>
-            <div className="space-y-5 max-w-2xl">
-              <div className="bg-gray-900/60 border border-gray-800 rounded-2xl p-6 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer group">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <h3 className="text-lg font-bold mb-2">Planning & Strategy</h3>
-                    <p className="text-gray-400 text-sm leading-relaxed">
-                      Together, we'll bring the message to life by carefully identifying the
-                      target audience and crafting the essential features. This phase
-                      focuses on decisions of the site, structure, navigation, and content
-                      needs to ensure a clear, goal-driven foundation.
-                    </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-2xl">
+              {/* Card 1 - Oracle Certification*/}
+              <a href="/certifications/OracleGenAICertificate.pdf" target="_blank" rel="noopener noreferrer" className="scroll-reveal-child bg-gray-900/60 border border-gray-800 rounded-2xl p-6 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer group flex flex-col justify-between min-h-[160px]">
+                <div>
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center shrink-0">
+                      {/* Oracle Logo */}
+                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="Oracle" className="w-7 h-7" />
+                    </div>
+                    <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                   </div>
-                  <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 transition-colors shrink-0 ml-4 mt-1" />
+                  <h3 className="text-lg font-bold text-white mb-2">Oracle Cloud Infrastructure Certified Generative AI Professional</h3>
+                  <p className="text-gray-400 text-sm">Oracle University</p>
                 </div>
-              </div>
-              <div className="bg-gray-900/60 border border-gray-800 rounded-2xl p-6 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer group">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <h3 className="text-lg font-bold mb-2">Development & Progress Updates</h3>
-                    <p className="text-gray-400 text-sm leading-relaxed">
-                      After finalizing the plan, development kicks off — from wireframes to
-                      fully functional code. You'll receive regular progress updates to stay
-                      informed and involved throughout the entire build process.
-                    </p>
+              </a>
+              {/* Card 2 IBM Certification*/}
+              <a href="/certifications/IBM-softwareEnginner.pdf" target="_blank" rel="noopener noreferrer" className="scroll-reveal-child bg-gray-900/60 border border-gray-800 rounded-2xl p-6 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer group flex flex-col justify-between min-h-[160px]">
+                <div>
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="w-12 h-12 rounded-xl bg-blue-600/10 flex items-center justify-center shrink-0">
+                      {/* IBM Logo */}
+                      <img src="https://www.google.com/s2/favicons?domain=ibm.com&sz=128" alt="IBM" className="w-7 h-7 rounded-sm" />
+                    </div>
+                    <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                   </div>
-                  <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 transition-colors shrink-0 ml-4 mt-1" />
+                  <h3 className="text-lg font-bold text-white mb-2">Introduction to Software Engineering</h3>
+                  <p className="text-gray-400 text-sm">IBM (Coursera)</p>
                 </div>
-              </div>
-              <div className="bg-gray-900/60 border border-gray-800 rounded-2xl p-6 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer group">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <h3 className="text-lg font-bold mb-2">Deployment & Launch</h3>
-                    <p className="text-gray-400 text-sm leading-relaxed">
-                      This is where everything comes together. Based on the approved design,
-                      the site is developed into a fully functional product — carefully built
-                      from the ground up and prepared for a smooth, successful launch.
-                    </p>
+              </a>
+              {/* Card 3 Programming Pathshala Certification*/}
+              <a href="/certifications/Certificate_programingPathshala.pdf" target="_blank" rel="noopener noreferrer" className="scroll-reveal-child bg-gray-900/60 border border-gray-800 rounded-2xl p-6 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer group flex flex-col justify-between min-h-[160px]">
+                <div>
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center shrink-0">
+                      {/* Programming Pathshala Logo */}
+                      <img src="https://www.google.com/s2/favicons?domain=programmingpathshala.com&sz=128" alt="Programming Pathshala" className="w-7 h-7 rounded-sm bg-white" />
+                    </div>
+                    <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                   </div>
-                  <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 transition-colors shrink-0 ml-4 mt-1" />
+                  <h3 className="text-lg font-bold text-white mb-2">Full Stack with AI</h3>
+                  <p className="text-gray-400 text-sm">Programming Pathshala</p>
                 </div>
-              </div>
+              </a>
+              {/* Card 4 NPTEL Certification*/}
+              <a href="/certifications/CloudComputing-NPTEL.pdf" target="_blank" rel="noopener noreferrer" className="scroll-reveal-child bg-gray-900/60 border border-gray-800 rounded-2xl p-6 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer group flex flex-col justify-between min-h-[160px]">
+                <div>
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="w-12 h-12 rounded-xl bg-sky-500/10 flex items-center justify-center shrink-0">
+                      {/* NPTEL Logo */}
+                      <img src="https://www.google.com/s2/favicons?domain=nptel.ac.in&sz=128" alt="NPTEL" className="w-7 h-7 rounded-sm" />
+                    </div>
+                    <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">Cloud Computing Certification</h3>
+                  <p className="text-gray-400 text-sm">NPTEL (IIT Kharagpur)</p>
+                </div>
+              </a>
             </div>
           </section>
 
@@ -363,40 +469,78 @@ function App() {
               LET'S WORK<br />
               <span className="text-gray-700">TOGETHER</span>
             </h2>
-            <form className="max-w-2xl space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm mb-2">Name</label>
-                  <input
-                    type="text"
-                    placeholder="Your Name"
-                    className="w-full bg-gray-900 border border-gray-800 rounded-lg px-4 py-3 focus:outline-none focus:border-orange-500 transition"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm mb-2">Email</label>
-                  <input
-                    type="email"
-                    placeholder="Your@email.com"
-                    className="w-full bg-gray-900 border border-gray-800 rounded-lg px-4 py-3 focus:outline-none focus:border-orange-500 transition"
-                  />
+
+            <div className="relative max-w-xl">
+              {/* Floating particles */}
+              <div className="contact-particle"></div>
+              <div className="contact-particle"></div>
+              <div className="contact-particle"></div>
+              <div className="contact-particle"></div>
+              <div className="contact-particle"></div>
+
+              {/* Pulsing glow orbs - now static */}
+              <div className="absolute -top-20 -right-20 w-56 h-56 bg-orange-500 rounded-full blur-[200px] pointer-events-none"></div>
+              <div className="absolute -bottom-16 -left-16 w-44 h-44 bg-amber-400 rounded-full blur-[100px] pointer-events-none"></div>
+
+              {/* Animated gradient border card */}
+              <div className="contact-card-wrapper">
+                {/* Decorative Tilted Frames */}
+                <div className="contact-frame frame-tilt-1"></div>
+                <div className="contact-frame frame-tilt-2"></div>
+                <div className="contact-frame frame-tilt-3"></div>
+
+                <div className="relative bg-gray-950/95 backdrop-blur-2xl rounded-3xl p-6 lg:p-8 overflow-hidden">
+                  {/* Static decorative rings */}
+                  <div className="absolute -top-8 -right-8 w-32 h-32 border-2 border-orange-500/20 rounded-full pointer-events-none"></div>
+                  <div className="absolute -top-4 -right-4 w-20 h-20 border-2 border-dashed border-orange-500/30 rounded-full pointer-events-none"></div>
+
+                  {/* Corner accent */}
+                  <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-orange-500/15 to-transparent rounded-tr-full pointer-events-none"></div>
+
+                  <form className="relative z-10 space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="group">
+                        <input
+                          type="text"
+                          placeholder="Your Name"
+                          className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-2.5 text-sm placeholder-orange-500/80 focus:outline-none focus:border-orange-500/50 focus:bg-orange-500/[0.03] focus:shadow-[0_0_30px_rgba(249,115,22,0.08)] transition-all duration-500"
+                        />
+                      </div>
+                      <div className="group">
+                        <input
+                          type="email"
+                          placeholder="Your Email"
+                          className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-2.5 text-sm placeholder-orange-500/80 focus:outline-none focus:border-orange-500/50 focus:bg-orange-500/[0.03] focus:shadow-[0_0_30px_rgba(249,115,22,0.08)] transition-all duration-500"
+                        />
+                      </div>
+                    </div>
+                    <div className="group">
+                      <input
+                        type="text"
+                        placeholder="Subject"
+                        className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-2.5 text-sm placeholder-orange-500/80 focus:outline-none focus:border-orange-500/50 focus:bg-orange-500/[0.03] focus:shadow-[0_0_30px_rgba(249,115,22,0.08)] transition-all duration-500"
+                      />
+                    </div>
+                    <div className="group">
+                      <textarea
+                        rows={5}
+                        placeholder="Message..."
+                        className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-2.5 text-sm placeholder-orange-500/80 focus:outline-none focus:border-orange-500/50 focus:bg-orange-500/[0.03] focus:shadow-[0_0_30px_rgba(249,115,22,0.08)] transition-all duration-500 resize-none"
+                      ></textarea>
+                    </div>
+                    <button
+                      type="submit"
+                      className="group relative w-full overflow-hidden bg-orange-600 text-white font-bold py-3.5 rounded-xl transition-all duration-300 hover:bg-orange-500 hover:shadow-[0_8px_30px_rgba(249,115,22,0.25)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
+                    >
+                      <span className="relative z-10 flex items-center justify-center gap-2 tracking-wide uppercase text-xs">
+                        Send Message
+                        <svg className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                      </span>
+                    </button>
+                  </form>
                 </div>
               </div>
-              <div>
-                <label className="block text-sm mb-2">Message</label>
-                <textarea
-                  rows={6}
-                  placeholder="Message"
-                  className="w-full bg-gray-900 border border-gray-800 rounded-lg px-4 py-3 focus:outline-none focus:border-orange-500 transition resize-none"
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 rounded-lg transition"
-              >
-                Submit
-              </button>
-            </form>
+            </div>
           </section>
         </main>
       </div>
@@ -406,7 +550,7 @@ function App() {
         <div className="max-w-7xl mx-auto">
           <div className="border-t border-gray-800"></div>
           <div className="py-12 text-center">
-            <p className="text-gray-400 text-sm">Copyright © 2026 <span className="text-orange-500">Sanvi Kumari</span></p>
+            <p className="text-gray-400 text-sm">Copyright © {new Date().getFullYear()} <span className="text-orange-500">Sanvi Kumari</span></p>
           </div>
         </div>
       </footer>
