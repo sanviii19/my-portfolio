@@ -82,7 +82,7 @@ function App() {
       </div>
 
       {/* ── Content Wrapper (sidebar + main) ── */}
-      <div className="flex max-w-7xl mx-auto pt-6 ml-20">
+      <div className="flex flex-col lg:flex-row max-w-7xl mx-auto pt-6 lg:ml-20">
         {/* Profile Card — sticky sidebar */}
         <aside className="profile-sidebar">
           <div className="bg-white rounded-3xl p-6 text-black w-full max-w-[20rem] relative overflow-hidden shadow-2xl">
@@ -135,8 +135,8 @@ function App() {
         <main className="flex-1 min-w-0 main-entrance">
 
           {/* Hero */}
-          <section id="home" className="pt-6 pb-20 px-6 lg:px-12">
-            <h1 className="text-5xl lg:text-7xl font-bold mb-6 leading-[0.95]">
+          <section id="home" className="pt-6 pb-20 px-6 lg:px-12 flex flex-col items-center lg:items-start text-center lg:text-left">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 leading-[0.95]">
               SOFTWARE<br />
               <span className="text-gray-700">DEVELOPER</span>
             </h1>
@@ -146,7 +146,7 @@ function App() {
             </p>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-6 mb-12 max-w-xl">
+            <div className="grid grid-cols-3 gap-6 mb-12 max-w-xl w-full text-sm sm:text-base">
               <div>
                 <div className="text-4xl lg:text-5xl font-bold mb-2">
                   10<span className="text-orange-500">+</span>
@@ -172,7 +172,7 @@ function App() {
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="group block max-w-xl relative"
+              className="group block w-full max-w-xl relative"
             >
               {/* Static glow orbs */}
               <div className="absolute -top-10 -right-10 w-48 h-48 bg-orange-500 rounded-full blur-[100px] pointer-events-none group-hover:bg-orange-400 transition-colors duration-500 opacity-60"></div>
@@ -207,14 +207,14 @@ function App() {
 
           {/* Recent Projects */}
           <section id="projects" className="reveal py-20 px-6 lg:px-12">
-            <h2 className="text-5xl lg:text-6xl font-bold mb-12">
+            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-12 text-center lg:text-left">
               RECENT<br />
               <span className="text-gray-700">PROJECTS</span>
             </h2>
             <div className="space-y-5 max-w-2xl">
               <a href="https://github.com/sanviii19/Linkly" target="_blank" className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
-                <div className="flex items-start gap-5">
-                  <div className="w-28 h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
+                <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                  <div className="w-full sm:w-28 h-40 sm:h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
                     <img src={linklyImg} alt="Linkly" className="w-full h-full object-cover" />
                   </div>
                   <div className="flex-1 min-w-0">
@@ -225,8 +225,8 @@ function App() {
                 </div>
               </a>
               <a href="https://github.com/sanviii19/RapidStore" target="_blank" className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
-                <div className="flex items-start gap-5">
-                  <div className="w-28 h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
+                <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                  <div className="w-full sm:w-28 h-40 sm:h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
                     <img src={rapidstoreImg} alt="RapidS  tore" className="w-full h-full object-cover" />
                   </div>
                   <div className="flex-1 min-w-0">
@@ -237,8 +237,8 @@ function App() {
                 </div>
               </a>
               <a href="https://github.com/sanviii19/DiscussionPlatform-Konvo" target="_blank" className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
-                <div className="flex items-start gap-5">
-                  <div className="w-28 h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
+                <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                  <div className="w-full sm:w-28 h-40 sm:h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
                     <img src={konvoImg} alt="Konvo" className="w-full h-full object-cover" />
                   </div>
                   <div className="flex-1 min-w-0">
@@ -249,8 +249,8 @@ function App() {
                 </div>
               </a>
               <a href="https://github.com/sanviii19/ClinicCare" target="_blank" className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
-                <div className="flex items-start gap-5">
-                  <div className="w-28 h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
+                <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                  <div className="w-full sm:w-28 h-40 sm:h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
                     <img src={clinicCareImg} alt="ClinicCare" className="w-full h-full object-cover" />
                   </div>
                   <div className="flex-1 min-w-0">
@@ -261,8 +261,8 @@ function App() {
                 </div>
               </a>
               <a href="https://github.com/sanviii19/Disaster-managment-hackathon-" target="_blank" className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
-                <div className="flex items-start gap-5">
-                  <div className="w-28 h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
+                <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                  <div className="w-full sm:w-28 h-40 sm:h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
                     <img src={disasterMgmtImg} alt="Disaster Management" className="w-full h-full object-cover" />
                   </div>
                   <div className="flex-1 min-w-0">
@@ -273,8 +273,8 @@ function App() {
                 </div>
               </a>
               <a href="https://time-flies-gray.vercel.app/" target="_blank" className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
-                <div className="flex items-start gap-5">
-                  <div className="w-28 h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
+                <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                  <div className="w-full sm:w-28 h-40 sm:h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
                     <img src={timeFliesImg} alt="TimeFlies" className="w-full h-full object-cover" />
                   </div>
                   <div className="flex-1 min-w-0">
@@ -289,13 +289,13 @@ function App() {
 
           {/* Coding Profiles */}
           <section id="coding-profiles" className="reveal py-20 px-6 lg:px-12">
-            <h2 className="text-5xl lg:text-6xl font-bold mb-12">
+            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-12 text-center lg:text-left">
               CODING<br />
               <span className="text-gray-700">PROFILES</span>
             </h2>
             <div className="space-y-5 max-w-2xl">
               <a href="https://leetcode.com/u/sanviii19/" target="_blank" className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0">
                   <div>
                     <h3 className="text-lg font-bold mb-1">LeetCode</h3>
                     <p className="text-gray-400 text-sm">Solved 250+ Data Structure and Algorithms problems on Leetcode.</p>
@@ -304,7 +304,7 @@ function App() {
                 </div>
               </a>
               <a href="https://www.hackerrank.com/profile/sanvikumari19" target="_blank" className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0">
                   <div>
                     <h3 className="text-lg font-bold mb-1">HackerRank</h3>
                     <p className="text-gray-400 text-sm">Achieved 5-star Gold Badge in C++ and Python on HackerRank.</p>
@@ -317,11 +317,11 @@ function App() {
 
           {/* Technical Skills */}
           <section id="tools" className="reveal py-20 px-6 lg:px-12">
-            <h2 className="text-5xl lg:text-6xl font-bold mb-12">
+            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-12 text-center lg:text-left">
               TECHNICAL<br />
               <span className="text-gray-700">SKILLS</span>
             </h2>
-            <div className="grid grid-cols-2 gap-4 max-w-2xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
               <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
                 <div className="w-11 h-11 bg-blue-600/15 rounded-xl flex items-center justify-center shrink-0">
                   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" className="w-7 h-7" />
@@ -399,7 +399,7 @@ function App() {
 
           {/* Licenses & Certifications */}
           <section id="certifications" className="reveal py-20 px-6 lg:px-12">
-            <h2 className="text-5xl lg:text-6xl font-bold mb-12">
+            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-12 text-center lg:text-left">
               LICENSES &<br />
               <span className="text-gray-700">CERTIFICATIONS</span>
             </h2>
@@ -465,7 +465,7 @@ function App() {
 
           {/* Contact */}
           <section id="contact" className="reveal py-20 px-6 lg:px-12">
-            <h2 className="text-5xl lg:text-6xl font-bold mb-12">
+            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-12 text-center lg:text-left">
               LET'S WORK<br />
               <span className="text-gray-700">TOGETHER</span>
             </h2>
