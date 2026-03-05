@@ -15,15 +15,21 @@ function App() {
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
+    botcheck: false
   });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [statusMessage, setStatusMessage] = useState('');
   const [isStatusVisible, setIsStatusVisible] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    const { name, value, type } = e.target;
+    if (type === 'checkbox') {
+      const checkbox = e.target as HTMLInputElement;
+      setFormData(prev => ({ ...prev, [name]: checkbox.checked }));
+    } else {
+      setFormData(prev => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -49,7 +55,7 @@ function App() {
       if (result.success) {
         setStatus('success');
         setStatusMessage("Thanks for reaching out! I'll get back to you soon.");
-        setFormData({ name: '', email: '', subject: '', message: '' });
+        setFormData({ name: '', email: '', subject: '', message: '', botcheck: false });
 
         // Smooth fade out after 3 seconds
         setTimeout(() => {
@@ -613,6 +619,15 @@ function App() {
                         className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-2.5 text-sm placeholder-orange-500/80 focus:outline-none focus:border-orange-500/50 focus:bg-orange-500/[0.03] focus:shadow-[0_0_30px_rgba(249,115,22,0.08)] transition-all duration-500 resize-none"
                       ></textarea>
                     </div>
+
+                    <input
+                      type="checkbox"
+                      name="botcheck"
+                      className="hidden"
+                      style={{ display: 'none' }}
+                      checked={formData.botcheck}
+                      onChange={handleChange}
+                    />
 
                     {status !== 'idle' && (
                       <div className={`text-sm font-medium px-4 py-2 rounded-lg transition-all duration-500 transform ${isStatusVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-2 scale-95 pointer-events-none'
