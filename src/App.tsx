@@ -186,10 +186,10 @@ function App() {
 
               {/* Social icons with backgrounds */}
               <div className="flex justify-center gap-5 pb-1">
-                <a href="https://github.com/sanviii19" className="text-orange-500 hover:text-orange-600 hover:scale-110 transition-all">
+                <a href="https://github.com/sanviii19" target='_blank' className="text-orange-500 hover:text-orange-600 hover:scale-110 transition-all">
                   <Github className="w-5 h-5 stroke-[1.5]" />
                 </a>
-                <a href="https://www.linkedin.com/in/sanvi-kumari/" className="text-orange-500 hover:text-orange-600 hover:scale-110 transition-all">
+                <a href="https://www.linkedin.com/in/sanvi-kumari/" target='_blank' className="text-orange-500 hover:text-orange-600 hover:scale-110 transition-all">
                   <Linkedin className="w-5 h-5 stroke-[1.5]" />
                 </a>
                 <a href="mailto:sanvikumari19@gmail.com" className="text-orange-500 hover:text-orange-600 hover:scale-110 transition-all">
