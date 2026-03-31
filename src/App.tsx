@@ -287,78 +287,219 @@ function App() {
               <span className="text-gray-700">PROJECTS</span>
             </h2>
             <div className="space-y-5 max-w-2xl">
-              <a href="https://github.com/sanviii19/Linkly" target="_blank" className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+              {/* Linkly */}
+              <article className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300">
                 <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
                   <div className="w-full sm:w-28 h-40 sm:h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
                     <img src={linklyImg} alt="Linkly" className="w-full h-full object-cover" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-lg font-bold mb-1">Linkly</h3>
+                    <div className="mb-2 flex items-start justify-between gap-2">
+                      <h3 className="text-lg font-bold">Linkly</h3>
+                      <div className="flex items-center gap-2 shrink-0">
+                        <a
+                          href="https://github.com/sanviii19/Linkly"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-700 bg-black/30 text-gray-300 text-xs hover:text-purple-200 hover:border-purple-400/70 hover:bg-purple-500/10 transition-all duration-300"
+                        >
+                          <Github className="w-3.5 h-3.5" />
+                          GitHub
+                        </a>
+                        <a
+                          href="https://linkly-go.vercel.app"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-700 bg-black/30 text-gray-300 text-xs hover:text-purple-200 hover:border-purple-400/70 hover:bg-purple-500/10 transition-all duration-300"
+                        >
+                          <ExternalLink className="w-3.5 h-3.5" />
+                          Live
+                        </a>
+                      </div>
+                    </div>
                     <p className="text-gray-400 text-sm leading-relaxed">A web platform that transforms long URLs into secure, customizable short links with built-in analytics.</p>
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      <span className="px-3 py-1 rounded-full border border-purple-500/40 bg-purple-500/10 text-purple-300 text-xs transition-transform duration-300 ease-out hover:scale-105 hover:shadow-[0_0_14px_rgba(255,255,255,0.22)]">React</span>
+                      <span className="px-3 py-1 rounded-full border border-purple-500/40 bg-purple-500/10 text-purple-300 text-xs transition-transform duration-300 ease-out hover:scale-105 hover:shadow-[0_0_14px_rgba(255,255,255,0.22)]">Node.js</span>
+                      <span className="px-3 py-1 rounded-full border border-purple-500/40 bg-purple-500/10 text-purple-300 text-xs transition-transform duration-300 ease-out hover:scale-105 hover:shadow-[0_0_14px_rgba(255,255,255,0.22)]">Express.js</span>
+                      <span className="px-3 py-1 rounded-full border border-purple-500/40 bg-purple-500/10 text-purple-300 text-xs transition-transform duration-300 ease-out hover:scale-105 hover:shadow-[0_0_14px_rgba(255,255,255,0.22)]">MongoDB</span>
+                      <span className="px-3 py-1 rounded-full border border-purple-500/40 bg-purple-500/10 text-purple-300 text-xs transition-transform duration-300 ease-out hover:scale-105 hover:shadow-[0_0_14px_rgba(255,255,255,0.22)]">Tailwind CSS</span>
+                    </div>
                   </div>
-                  <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 transition-colors shrink-0 mt-1" />
                 </div>
-              </a>
-              <a href="https://github.com/sanviii19/RapidStore" target="_blank" className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+              </article>
+
+              {/* RapidStore */}
+              <article className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300">
                 <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
                   <div className="w-full sm:w-28 h-40 sm:h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
-                    <img src={rapidstoreImg} alt="RapidS  tore" className="w-full h-full object-cover" />
+                    <img src={rapidstoreImg} alt="RapidStore" className="w-full h-full object-cover" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-lg font-bold mb-1">RapidStore</h3>
+                    <div className="mb-2 flex items-start justify-between gap-2">
+                      <h3 className="text-lg font-bold">RapidStore</h3>
+                      <div className="flex items-center gap-2 shrink-0">
+                        <a
+                          href="https://github.com/sanviii19/RapidStore"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-700 bg-black/30 text-gray-300 text-xs hover:text-stone-200 hover:border-stone-400/70 hover:bg-stone-500/10 transition-all duration-300"
+                        >
+                          <Github className="w-3.5 h-3.5" />
+                          GitHub
+                        </a>
+                      </div>
+                    </div>
                     <p className="text-gray-400 text-sm leading-relaxed">An e-commerce platform for seamless online shopping with secure real-time payments and an admin dashboard.</p>
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      <span className="px-3 py-1 rounded-full border border-stone-500/40 bg-stone-500/10 text-stone-300 text-xs transition-transform duration-300 ease-out hover:scale-105 hover:shadow-[0_0_14px_rgba(255,255,255,0.22)]">React</span>
+                      <span className="px-3 py-1 rounded-full border border-stone-500/40 bg-stone-500/10 text-stone-300 text-xs transition-transform duration-300 ease-out hover:scale-105 hover:shadow-[0_0_14px_rgba(255,255,255,0.22)]">Node.js</span>
+                      <span className="px-3 py-1 rounded-full border border-stone-500/40 bg-stone-500/10 text-stone-300 text-xs transition-transform duration-300 ease-out hover:scale-105 hover:shadow-[0_0_14px_rgba(255,255,255,0.22)]">Express.js</span>
+                      <span className="px-3 py-1 rounded-full border border-stone-500/40 bg-stone-500/10 text-stone-300 text-xs transition-transform duration-300 ease-out hover:scale-105 hover:shadow-[0_0_14px_rgba(255,255,255,0.22)]">MongoDB</span>
+                      <span className="px-3 py-1 rounded-full border border-stone-500/40 bg-stone-500/10 text-stone-300 text-xs transition-transform duration-300 ease-out hover:scale-105 hover:shadow-[0_0_14px_rgba(255,255,255,0.22)]">Cashfree API</span>
+                    </div>
                   </div>
-                  <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 transition-colors shrink-0 mt-1" />
                 </div>
-              </a>
-              <a href="https://github.com/sanviii19/DiscussionPlatform-Konvo" target="_blank" className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+              </article>
+
+              {/* Konvo */}
+              <article className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300">
                 <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
                   <div className="w-full sm:w-28 h-40 sm:h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
                     <img src={konvoImg} alt="Konvo" className="w-full h-full object-cover" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-lg font-bold mb-1">Konvo</h3>
+                    <div className="mb-2 flex items-start justify-between gap-2">
+                      <h3 className="text-lg font-bold">Konvo</h3>
+                      <div className="flex items-center gap-2 shrink-0">
+                        <a
+                          href="https://github.com/sanviii19/DiscussionPlatform-Konvo"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-700 bg-black/30 text-gray-300 text-xs hover:text-violet-200 hover:border-violet-400/70 hover:bg-violet-500/10 transition-all duration-300"
+                        >
+                          <Github className="w-3.5 h-3.5" />
+                          GitHub
+                        </a>
+                      </div>
+                    </div>
                     <p className="text-gray-400 text-sm leading-relaxed">An online discussion platform designed for seamless group conversations, knowledge sharing, and community building.</p>
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      <span className="px-3 py-1 rounded-full border border-violet-500/40 bg-violet-500/10 text-violet-300 text-xs transition-transform duration-300 ease-out hover:scale-105 hover:shadow-[0_0_14px_rgba(255,255,255,0.22)]">PHP</span>
+                      <span className="px-3 py-1 rounded-full border border-violet-500/40 bg-violet-500/10 text-violet-300 text-xs transition-transform duration-300 ease-out hover:scale-105 hover:shadow-[0_0_14px_rgba(255,255,255,0.22)]">HTML</span>
+                      <span className="px-3 py-1 rounded-full border border-violet-500/40 bg-violet-500/10 text-violet-300 text-xs transition-transform duration-300 ease-out hover:scale-105 hover:shadow-[0_0_14px_rgba(255,255,255,0.22)]">TailwindCSS</span>
+                      <span className="px-3 py-1 rounded-full border border-violet-500/40 bg-violet-500/10 text-violet-300 text-xs transition-transform duration-300 ease-out hover:scale-105 hover:shadow-[0_0_14px_rgba(255,255,255,0.22)]">MySQL</span>
+                      <span className="px-3 py-1 rounded-full border border-violet-500/40 bg-violet-500/10 text-violet-300 text-xs transition-transform duration-300 ease-out hover:scale-105 hover:shadow-[0_0_14px_rgba(255,255,255,0.22)]">Gemini API</span>
+                    </div>
                   </div>
-                  <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 transition-colors shrink-0 mt-1" />
                 </div>
-              </a>
-              <a href="https://github.com/sanviii19/ClinicCare" target="_blank" className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+              </article>
+
+              {/* ClinicCare */}
+              <article className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300">
                 <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
                   <div className="w-full sm:w-28 h-40 sm:h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
                     <img src={clinicCareImg} alt="ClinicCare" className="w-full h-full object-cover" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-lg font-bold mb-1">ClinicCare</h3>
+                    <div className="mb-2 flex items-start justify-between gap-2">
+                      <h3 className="text-lg font-bold">ClinicCare</h3>
+                      <div className="flex items-center gap-2 shrink-0">
+                        <a
+                          href="https://github.com/sanviii19/ClinicCare"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-700 bg-black/30 text-gray-300 text-xs hover:text-blue-200 hover:border-blue-400/70 hover:bg-blue-500/10 transition-all duration-300"
+                        >
+                          <Github className="w-3.5 h-3.5" />
+                          GitHub
+                        </a>
+                      </div>
+                    </div>
                     <p className="text-gray-400 text-sm leading-relaxed">A healthcare management platform for booking appointments, managing patient records, and streamlining clinic operations.</p>
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      <span className="px-3 py-1 rounded-full border border-blue-500/40 bg-blue-500/10 text-blue-300 text-xs transition-transform duration-300 ease-out hover:scale-105 hover:shadow-[0_0_14px_rgba(255,255,255,0.22)]">React</span>
+                      <span className="px-3 py-1 rounded-full border border-blue-500/40 bg-blue-500/10 text-blue-300 text-xs transition-transform duration-300 ease-out hover:scale-105 hover:shadow-[0_0_14px_rgba(255,255,255,0.22)]">Node.js</span>
+                      <span className="px-3 py-1 rounded-full border border-blue-500/40 bg-blue-500/10 text-blue-300 text-xs transition-transform duration-300 ease-out hover:scale-105 hover:shadow-[0_0_14px_rgba(255,255,255,0.22)]">Express.js</span>
+                      <span className="px-3 py-1 rounded-full border border-blue-500/40 bg-blue-500/10 text-blue-300 text-xs transition-transform duration-300 ease-out hover:scale-105 hover:shadow-[0_0_14px_rgba(255,255,255,0.22)]">MongoDB</span>
+                    </div>
                   </div>
-                  <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 transition-colors shrink-0 mt-1" />
                 </div>
-              </a>
-              <a href="https://github.com/sanviii19/Disaster-managment-hackathon-" target="_blank" className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+              </article>
+
+              {/* Disaster Management System */}
+              <article className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300">
                 <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
                   <div className="w-full sm:w-28 h-40 sm:h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
                     <img src={disasterMgmtImg} alt="Disaster Management" className="w-full h-full object-cover" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-lg font-bold mb-1">Disaster Management System</h3>
+                    <div className="mb-2 flex items-start justify-between gap-2">
+                      <h3 className="text-lg font-bold">Disaster Management System</h3>
+                      <div className="flex items-center gap-2 shrink-0">
+                        <a
+                          href="https://github.com/sanviii19/Disaster-managment-hackathon-"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-700 bg-black/30 text-gray-300 text-xs hover:text-gray-200 hover:border-slate-400/70 hover:bg-slate-500/10 transition-all duration-300"
+                        >
+                          <Github className="w-3.5 h-3.5" />
+                          GitHub
+                        </a>
+                      </div>
+                    </div>
                     <p className="text-gray-400 text-sm leading-relaxed">A real-time disaster response platform for tracking, reporting, and coordinating relief efforts during emergencies.</p>
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      <span className="px-3 py-1 rounded-full border border-slate-500/40 bg-slate-500/10 text-slate-300 text-xs transition-transform duration-300 ease-out hover:scale-105 hover:shadow-[0_0_14px_rgba(255,255,255,0.22)]">React</span>
+                      <span className="px-3 py-1 rounded-full border border-slate-500/40 bg-slate-500/10 text-slate-300 text-xs transition-transform duration-300 ease-out hover:scale-105 hover:shadow-[0_0_14px_rgba(255,255,255,0.22)]">Node.js</span>
+                      <span className="px-3 py-1 rounded-full border border-slate-500/40 bg-slate-500/10 text-slate-300 text-xs transition-transform duration-300 ease-out hover:scale-105 hover:shadow-[0_0_14px_rgba(255,255,255,0.22)]">Express.js</span>
+                      <span className="px-3 py-1 rounded-full border border-slate-500/40 bg-slate-500/10 text-slate-300 text-xs transition-transform duration-300 ease-out hover:scale-105 hover:shadow-[0_0_14px_rgba(255,255,255,0.22)]">WebSockets</span>
+                      <span className="px-3 py-1 rounded-full border border-slate-500/40 bg-slate-500/10 text-slate-300 text-xs transition-transform duration-300 ease-out hover:scale-105 hover:shadow-[0_0_14px_rgba(255,255,255,0.22)]">MongoDB</span>
+                      <span className="px-3 py-1 rounded-full border border-slate-500/40 bg-slate-500/10 text-slate-300 text-xs transition-transform duration-300 ease-out hover:scale-105 hover:shadow-[0_0_14px_rgba(255,255,255,0.22)]">Google Maps API</span>
+                    </div>
                   </div>
-                  <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 transition-colors shrink-0 mt-1" />
                 </div>
-              </a>
-              <a href="https://time-flies-gray.vercel.app/" target="_blank" className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+              </article>
+
+              {/* Time Flies */}
+              <article className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300">
                 <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
                   <div className="w-full sm:w-28 h-40 sm:h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
                     <img src={timeFliesImg} alt="TimeFlies" className="w-full h-full object-cover" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-lg font-bold mb-1">Time Flies</h3>
+                    <div className="mb-2 flex items-start justify-between gap-2">
+                      <h3 className="text-lg font-bold">Time Flies</h3>
+                      <div className="flex items-center gap-2 shrink-0">
+                        <a
+                          href="https://github.com/sanviii19/TimeFlies"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-700 bg-black/30 text-gray-300 text-xs hover:text-cyan-200 hover:border-cyan-400/70 hover:bg-cyan-500/10 transition-all duration-300"
+                        >
+                          <Github className="w-3.5 h-3.5" />
+                          GitHub
+                        </a>
+                        <a
+                          href="https://time-flies-gray.vercel.app/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-700 bg-black/30 text-gray-300 text-xs hover:text-cyan-200 hover:border-cyan-400/70 hover:bg-cyan-500/10 transition-all duration-300"
+                        >
+                          <ExternalLink className="w-3.5 h-3.5" />
+                          Live
+                        </a>
+                      </div>
+                    </div>
                     <p className="text-gray-400 text-sm leading-relaxed">A sleek stopwatch app with basic controls, featuring a dark and light theme toggle for a comfortable experience.</p>
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      <span className="px-3 py-1 rounded-full border border-cyan-500/40 bg-cyan-500/10 text-cyan-300 text-xs transition-transform duration-300 ease-out hover:scale-105 hover:shadow-[0_0_14px_rgba(255,255,255,0.22)]">React</span>
+                      <span className="px-3 py-1 rounded-full border border-cyan-500/40 bg-cyan-500/10 text-cyan-300 text-xs transition-transform duration-300 ease-out hover:scale-105 hover:shadow-[0_0_14px_rgba(255,255,255,0.22)]">CSS</span>
+                      <span className="px-3 py-1 rounded-full border border-cyan-500/40 bg-cyan-500/10 text-cyan-300 text-xs transition-transform duration-300 ease-out hover:scale-105 hover:shadow-[0_0_14px_rgba(255,255,255,0.22)]">Vercel</span>
+                    </div>
                   </div>
-                  <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 transition-colors shrink-0 mt-1" />
                 </div>
-              </a>
+              </article>
             </div>
           </section>
 
