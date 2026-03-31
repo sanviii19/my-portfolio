@@ -100,24 +100,33 @@ function App() {
       rootMargin: '0px 0px -50px 0px'
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    // Observer for section-level reveal (just fades in the section)
+    const sectionObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('revealed');
-
-          // Stagger children animations
-          const children = entry.target.querySelectorAll('.scroll-reveal-child');
-          children.forEach((child, index) => {
-            setTimeout(() => {
-              child.classList.add('revealed');
-            }, index * 180);
-          });
         }
       });
     }, observerOptions);
 
-    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    // Observer for individual children — each animates when IT scrolls into view
+    const childObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          childObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+    document.querySelectorAll('.reveal').forEach((el) => sectionObserver.observe(el));
+    document.querySelectorAll('.scroll-reveal-child').forEach((el) => childObserver.observe(el));
+    document.querySelectorAll('.subheading-reveal').forEach((el) => childObserver.observe(el));
+
+    return () => {
+      sectionObserver.disconnect();
+      childObserver.disconnect();
+    };
   }, []);
   return (
     <div className="min-h-screen bg-black text-white">
@@ -537,77 +546,160 @@ function App() {
               TECHNICAL<br />
               <span className="text-gray-700">SKILLS</span>
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
-              <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
-                <div className="w-11 h-11 bg-blue-600/15 rounded-xl flex items-center justify-center shrink-0">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" className="w-7 h-7" />
+            <div className="space-y-10 max-w-2xl">
+              {/* Programming Languages */}
+              <div>
+                <div className="subheading-reveal flex items-center gap-3 mb-6">
+                  <span className="subheading-bar w-1 h-5 rounded-full bg-orange-500"></span>
+                  <h3 className="subheading-text text-sm font-bold uppercase tracking-[0.2em] shrink-0" style={{ fontFamily: "'Outfit', sans-serif", color: '#9ca3af' }}>Programming Languages</h3>
                 </div>
-                <div>
-                  <h3 className="text-base font-bold">C++</h3>
-                  <p className="text-gray-500 text-xs">Programming Language</p>
-                </div>
-              </div>
-              <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
-                <div className="w-11 h-11 bg-yellow-500/15 rounded-xl flex items-center justify-center shrink-0">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" className="w-7 h-7" />
-                </div>
-                <div>
-                  <h3 className="text-base font-bold">JavaScript</h3>
-                  <p className="text-gray-500 text-xs">Web Development</p>
-                </div>
-              </div>
-              <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
-                <div className="w-11 h-11 bg-green-600/15 rounded-xl flex items-center justify-center shrink-0">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" className="w-7 h-7" />
-                </div>
-                <div>
-                  <h3 className="text-base font-bold">Node.js</h3>
-                  <p className="text-gray-500 text-xs">Backend Runtime</p>
-                </div>
-              </div>
-              <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
-                <div className="w-11 h-11 bg-gray-700/40 rounded-xl flex items-center justify-center shrink-0">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express.js" className="w-7 h-7 invert" />
-                </div>
-                <div>
-                  <h3 className="text-base font-bold">Express.js</h3>
-                  <p className="text-gray-500 text-xs">Backend Framework</p>
-                </div>
-              </div>
-              <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
-                <div className="w-11 h-11 bg-blue-500/15 rounded-xl flex items-center justify-center shrink-0">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" className="w-7 h-7" />
-                </div>
-                <div>
-                  <h3 className="text-base font-bold">React</h3>
-                  <p className="text-gray-500 text-xs">Frontend Library</p>
-                </div>
-              </div>
-              <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
-                <div className="w-11 h-11 bg-cyan-500/15 rounded-xl flex items-center justify-center shrink-0">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" className="w-7 h-7" />
-                </div>
-                <div>
-                  <h3 className="text-base font-bold">Tailwind CSS</h3>
-                  <p className="text-gray-500 text-xs">CSS Framework</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
+                    <div className="w-11 h-11 bg-blue-600/15 rounded-xl flex items-center justify-center shrink-0">
+                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" className="w-7 h-7" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold">C++</h3>
+                      <p className="text-gray-500 text-xs">Programming Language</p>
+                    </div>
+                  </div>
+                  <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
+                    <div className="w-11 h-11 bg-red-500/15 rounded-xl flex items-center justify-center shrink-0">
+                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" className="w-7 h-7" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold">Java</h3>
+                      <p className="text-gray-500 text-xs">Programming Language</p>
+                    </div>
+                  </div>
+                  <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
+                    <div className="w-11 h-11 bg-yellow-500/15 rounded-xl flex items-center justify-center shrink-0">
+                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" className="w-7 h-7" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold">JavaScript</h3>
+                      <p className="text-gray-500 text-xs">Web Development</p>
+                    </div>
+                  </div>
+                  <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
+                    <div className="w-11 h-11 bg-blue-500/15 rounded-xl flex items-center justify-center shrink-0">
+                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" className="w-7 h-7" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold">TypeScript</h3>
+                      <p className="text-gray-500 text-xs">Typed JavaScript</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
-                <div className="w-11 h-11 bg-green-500/15 rounded-xl flex items-center justify-center shrink-0">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" className="w-7 h-7" />
+
+              {/* Technologies */}
+              <div>
+                <div className="subheading-reveal flex items-center gap-3 mb-6">
+                  <span className="subheading-bar w-1 h-5 rounded-full bg-orange-500"></span>
+                  <h3 className="subheading-text text-sm font-bold uppercase tracking-[0.2em] shrink-0" style={{ fontFamily: "'Outfit', sans-serif", color: '#9ca3af' }}>Technologies</h3>
                 </div>
-                <div>
-                  <h3 className="text-base font-bold">MongoDB</h3>
-                  <p className="text-gray-500 text-xs">Database</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
+                    <div className="w-11 h-11 bg-green-600/15 rounded-xl flex items-center justify-center shrink-0">
+                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" className="w-7 h-7" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold">Node.js</h3>
+                      <p className="text-gray-500 text-xs">Backend Runtime</p>
+                    </div>
+                  </div>
+                  <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
+                    <div className="w-11 h-11 bg-gray-700/40 rounded-xl flex items-center justify-center shrink-0">
+                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express.js" className="w-7 h-7 invert" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold">Express.js</h3>
+                      <p className="text-gray-500 text-xs">Backend Framework</p>
+                    </div>
+                  </div>
+                  <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
+                    <div className="w-11 h-11 bg-blue-500/15 rounded-xl flex items-center justify-center shrink-0">
+                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" className="w-7 h-7" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold">React</h3>
+                      <p className="text-gray-500 text-xs">Frontend Library</p>
+                    </div>
+                  </div>
+                  <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
+                    <div className="w-11 h-11 bg-cyan-500/15 rounded-xl flex items-center justify-center shrink-0">
+                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" className="w-7 h-7" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold">Tailwind CSS</h3>
+                      <p className="text-gray-500 text-xs">CSS Framework</p>
+                    </div>
+                  </div>
+                  <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
+                    <div className="w-11 h-11 bg-green-500/15 rounded-xl flex items-center justify-center shrink-0">
+                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" className="w-7 h-7" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold">MongoDB</h3>
+                      <p className="text-gray-500 text-xs">Database</p>
+                    </div>
+                  </div>
+                  <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
+                    <div className="w-11 h-11 bg-blue-500/15 rounded-xl flex items-center justify-center shrink-0">
+                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" className="w-7 h-7" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold">MySQL</h3>
+                      <p className="text-gray-500 text-xs">Database</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
-                <div className="w-11 h-11 bg-orange-500/15 rounded-xl flex items-center justify-center shrink-0">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" className="w-7 h-7" />
+
+              {/* Tools */}
+              <div>
+                <div className="subheading-reveal flex items-center gap-3 mb-6">
+                  <span className="subheading-bar w-1 h-5 rounded-full bg-orange-500"></span>
+                  <h3 className="subheading-text text-sm font-bold uppercase tracking-[0.2em] shrink-0" style={{ fontFamily: "'Outfit', sans-serif", color: '#9ca3af' }}>Tools</h3>
                 </div>
-                <div>
-                  <h3 className="text-base font-bold">Git</h3>
-                  <p className="text-gray-500 text-xs">Version Control</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
+                    <div className="w-11 h-11 bg-orange-500/15 rounded-xl flex items-center justify-center shrink-0">
+                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" className="w-7 h-7" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold">Git</h3>
+                      <p className="text-gray-500 text-xs">Version Control</p>
+                    </div>
+                  </div>
+                  <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
+                    <div className="w-11 h-11 bg-orange-600/15 rounded-xl flex items-center justify-center shrink-0">
+                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" alt="Postman" className="w-7 h-7" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold">Postman</h3>
+                      <p className="text-gray-500 text-xs">API Testing</p>
+                    </div>
+                  </div>
+                  <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
+                    <div className="w-11 h-11 bg-blue-500/15 rounded-xl flex items-center justify-center shrink-0">
+                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" className="w-7 h-7" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold">Docker</h3>
+                      <p className="text-gray-500 text-xs">Containerization</p>
+                    </div>
+                  </div>
+                  <div className="scroll-reveal-child flex items-center gap-4 bg-gray-900/60 border border-gray-800 rounded-2xl px-5 py-4 hover:border-gray-700 transition cursor-pointer">
+                    <div className="w-11 h-11 bg-blue-600/15 rounded-xl flex items-center justify-center shrink-0">
+                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-original.svg" alt="Kubernetes" className="w-7 h-7" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold">Kubernetes</h3>
+                      <p className="text-gray-500 text-xs">Orchestration</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
