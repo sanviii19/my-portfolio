@@ -286,98 +286,79 @@ function App() {
               RECENT<br />
               <span className="text-gray-700">PROJECTS</span>
             </h2>
-            <div className="space-y-6 max-w-5xl">
-              {[
-                {
-                  title: "Linkly",
-                  description: "A modern, feature-rich URL shortening service built with the MERN stack. Linkly allows users to create short, shareable links with advanced features like password protection, expiration dates, QR code generation, and comprehensive analytics.",
-                  img: linklyImg,
-                  github: "https://github.com/sanviii19/Linkly",
-                  live: "#",
-                  techStack: ["React", "Node.js", "Express.js", "MongoDB", "Tailwind CSS"]
-                },
-                {
-                  title: "RapidStore",
-                  description: "An e-commerce platform for seamless online shopping with secure real-time payments and an admin dashboard.",
-                  img: rapidstoreImg,
-                  github: "https://github.com/sanviii19/RapidStore",
-                  live: "#",
-                  techStack: ["React", "Node.js", "Express.js", "MongoDB", "Tailwind CSS", "Cashfree API"]
-                },
-                {
-                  title: "Konvo",
-                  description: "An online discussion platform designed for seamless group conversations, knowledge sharing, and community building.",
-                  img: konvoImg,
-                  github: "https://github.com/sanviii19/DiscussionPlatform-Konvo",
-                  live: "#",
-                  techStack: ["PHP", "HTML", "CSS", "MySQL", "Gemini API"]
-                },
-                {
-                  title: "ClinicCare",
-                  description: "A healthcare management platform for booking appointments, managing patient records, and streamlining clinic operations.",
-                  img: clinicCareImg,
-                  github: "https://github.com/sanviii19/ClinicCare",
-                  live: "#",
-                  techStack: ["React", "Node.js", "Express.js", "MongoDB", "Tailwind CSS"]
-                },
-                {
-                  title: "Disaster Management System",
-                  description: "A real-time disaster response platform for tracking, reporting, and coordinating relief efforts during emergencies.",
-                  img: disasterMgmtImg,
-                  github: "https://github.com/sanviii19/Disaster-managment-hackathon-",
-                  live: "#",
-                  techStack: ["React", "Node.js", "Express.js", "Prisma", "Tailwind CSS"]
-                },
-                {
-                  title: "Time Flies",
-                  description: "A sleek stopwatch app with basic controls, featuring a dark and light theme toggle for a comfortable experience.",
-                  img: timeFliesImg,
-                  github: "https://github.com/sanviii19/Time-Flies",
-                  live: "https://time-flies-gray.vercel.app/",
-                  techStack: ["HTML", "CSS", "JavaScript"]
-                }
-              ].map((project, index) => (
-                <div key={index} className="scroll-reveal-child bg-gray-900/60 border border-gray-800 rounded-2xl p-6 hover:border-gray-700 transition-all duration-300">
-                  <div className="flex flex-col md:flex-row gap-6 lg:gap-8">
-                    {/* Image */}
-                    <div className="w-full md:w-64 lg:w-72 h-56 md:h-auto bg-gray-800 rounded-xl shrink-0 overflow-hidden">
-                      <img src={project.img} alt={project.title} className="w-full h-full object-cover" />
-                    </div>
-
-                    {/* Content */}
-                    <div className="flex-1 flex flex-col justify-between py-2">
-                      <div>
-                        {/* Title & Links */}
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
-                          <h3 className="text-2xl font-bold">{project.title}</h3>
-                          <div className="flex items-center gap-3">
-                            <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-1.5 border border-gray-700 rounded-lg text-sm hover:bg-gray-800 hover:text-white transition-colors">
-                              <Github className="w-4 h-4" /> GitHub
-                            </a>
-                            <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-1.5 border border-gray-700 rounded-lg text-sm hover:bg-gray-800 hover:text-white transition-colors">
-                              <ExternalLink className="w-4 h-4" /> Live
-                            </a>
-                          </div>
-                        </div>
-
-                        {/* Description */}
-                        <p className="text-gray-400 text-sm leading-relaxed mb-6">
-                          {project.description}
-                        </p>
-                      </div>
-
-                      {/* Tech Stack */}
-                      <div className="flex flex-wrap gap-2">
-                        {project.techStack.map((tech, techIndex) => (
-                          <span key={techIndex} className="px-3 py-1 bg-[#1a112c] border border-[#3b2d56] rounded-full text-xs text-[#b39ddb]">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
+            <div className="space-y-5 max-w-2xl">
+              <a href="https://github.com/sanviii19/Linkly" target="_blank" className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+                <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                  <div className="w-full sm:w-28 h-40 sm:h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
+                    <img src={linklyImg} alt="Linkly" className="w-full h-full object-cover" />
                   </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg font-bold mb-1">Linkly</h3>
+                    <p className="text-gray-400 text-sm leading-relaxed">A web platform that transforms long URLs into secure, customizable short links with built-in analytics.</p>
+                  </div>
+                  <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 transition-colors shrink-0 mt-1" />
                 </div>
-              ))}
+              </a>
+              <a href="https://github.com/sanviii19/RapidStore" target="_blank" className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+                <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                  <div className="w-full sm:w-28 h-40 sm:h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
+                    <img src={rapidstoreImg} alt="RapidS  tore" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg font-bold mb-1">RapidStore</h3>
+                    <p className="text-gray-400 text-sm leading-relaxed">An e-commerce platform for seamless online shopping with secure real-time payments and an admin dashboard.</p>
+                  </div>
+                  <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 transition-colors shrink-0 mt-1" />
+                </div>
+              </a>
+              <a href="https://github.com/sanviii19/DiscussionPlatform-Konvo" target="_blank" className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+                <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                  <div className="w-full sm:w-28 h-40 sm:h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
+                    <img src={konvoImg} alt="Konvo" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg font-bold mb-1">Konvo</h3>
+                    <p className="text-gray-400 text-sm leading-relaxed">An online discussion platform designed for seamless group conversations, knowledge sharing, and community building.</p>
+                  </div>
+                  <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 transition-colors shrink-0 mt-1" />
+                </div>
+              </a>
+              <a href="https://github.com/sanviii19/ClinicCare" target="_blank" className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+                <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                  <div className="w-full sm:w-28 h-40 sm:h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
+                    <img src={clinicCareImg} alt="ClinicCare" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg font-bold mb-1">ClinicCare</h3>
+                    <p className="text-gray-400 text-sm leading-relaxed">A healthcare management platform for booking appointments, managing patient records, and streamlining clinic operations.</p>
+                  </div>
+                  <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 transition-colors shrink-0 mt-1" />
+                </div>
+              </a>
+              <a href="https://github.com/sanviii19/Disaster-managment-hackathon-" target="_blank" className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+                <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                  <div className="w-full sm:w-28 h-40 sm:h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
+                    <img src={disasterMgmtImg} alt="Disaster Management" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg font-bold mb-1">Disaster Management System</h3>
+                    <p className="text-gray-400 text-sm leading-relaxed">A real-time disaster response platform for tracking, reporting, and coordinating relief efforts during emergencies.</p>
+                  </div>
+                  <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 transition-colors shrink-0 mt-1" />
+                </div>
+              </a>
+              <a href="https://time-flies-gray.vercel.app/" target="_blank" className="scroll-reveal-child group block bg-gray-900/60 border border-gray-800 rounded-2xl p-5 hover:border-gray-600 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+                <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                  <div className="w-full sm:w-28 h-40 sm:h-20 bg-gray-800 rounded-xl shrink-0 overflow-hidden">
+                    <img src={timeFliesImg} alt="TimeFlies" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg font-bold mb-1">Time Flies</h3>
+                    <p className="text-gray-400 text-sm leading-relaxed">A sleek stopwatch app with basic controls, featuring a dark and light theme toggle for a comfortable experience.</p>
+                  </div>
+                  <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 transition-colors shrink-0 mt-1" />
+                </div>
+              </a>
             </div>
           </section>
 
