@@ -245,7 +245,7 @@ function App() {
               </div>
               <div>
                 <div className="text-4xl lg:text-5xl font-bold mb-2">
-                  300<span className="text-orange-500">+</span>
+                  350<span className="text-orange-500">+</span>
                 </div>
                 <div className="text-xs text-gray-400 uppercase tracking-wide">Coding Questions</div>
               </div>
@@ -523,7 +523,7 @@ function App() {
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0">
                   <div>
                     <h3 className="text-lg font-bold mb-1">LeetCode</h3>
-                    <p className="text-gray-400 text-sm">Solved 250+ Data Structure and Algorithms problems on Leetcode.</p>
+                    <p className="text-gray-400 text-sm">Solved 300+ Data Structure and Algorithms problems on Leetcode.</p>
                   </div>
                   <ExternalLink className="w-5 h-5 text-gray-600 group-hover:text-orange-400 transition-colors shrink-0 ml-4" />
                 </div>
